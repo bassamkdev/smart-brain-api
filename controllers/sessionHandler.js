@@ -3,7 +3,7 @@ const redis = require('redis');
 
 //setup Redis:
 
-const redisClient = redis.createClient(process.env.REDIS_URI)
+const redisClient = redis.createClient(process.env.REDIS_URL)
 
 const getAuthTokenId = (req, res) => {
 	const { authorization } = req.headers;
