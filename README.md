@@ -17,7 +17,7 @@ The API developed for smart brain app to handle user authentication, session man
   * `get and post (/profile/:id)`
   * `put (/image)`
   * `post (/imageurl)`
-### Code highlits
+### Code highlights
 - [server](https://github.com/bassamkdev/smart-brain-api/blob/master/server.js)
 - [All handlers](https://github.com/bassamkdev/smart-brain-api/tree/master/controllers)
 - [Session management](https://github.com/bassamkdev/smart-brain-api/blob/master/controllers/sessionHandler.js)
