@@ -12,15 +12,20 @@ const image = require('./controllers/image.js');
 const auth = require('./controllers/authorization')
 const signout = require('./controllers/signout')
 
-
-const db = knex({
-  client: 'pg',
-  connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: true,
-  }  
-});
-
+if (process.env.NODE_ENV === 'production') {
+  var db = knex({
+    client: 'pg',
+    connection: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: true,
+    }  
+  });
+} else {
+  var db = knex({
+    client: 'pg',
+    connection: process.env.POSTGRES_URI 
+  })
+}
 
 const app = express();
 
@@ -44,7 +49,7 @@ app.put('/image', auth.requireAuth, (req,res) => {image.handleImage(req, res, db
 
 app.post('/imageurl', auth.requireAuth, (req,res) => {image.handleApiCall(req, res)});
 
-app.listen(process.env.PORT || 3001, ()=>{
-	console.log(`app is running on port ${process.env.PORT}`);
+app.listen(process.env.PORT || 3000, ()=>{
+	console.log(`app is running on port ${process.env.PORT || 3000}`);
 })
 

@@ -2,8 +2,13 @@ const jwt = require('jsonwebtoken');
 const redis = require('redis');
 
 //setup Redis:
+if (process.env.NODE_ENV === 'production') {
+	var redisConnection = process.env.REDIS_URL
+  } else {
+	var redisConnection = process.env.REDIS_URI
+  }
 
-const redisClient = redis.createClient(process.env.REDIS_URL)
+const redisClient = redis.createClient(redisConnection)
 
 const getAuthTokenId = (req, res) => {
 	const { authorization } = req.headers;
